@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\UserAdditionally;
+use Exception;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -47,6 +48,9 @@ class TinifyService
         }
     }
 
+    /**
+     * @throws Exception
+     */
     private function optimize($file, $filename): void
     {
         try {
@@ -73,7 +77,7 @@ class TinifyService
         } catch(\Tinify\ConnectionException $e) {
             throw new \Exception('A network connection error occurred.');
             // A network connection error occurred.
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             throw new \Exception('Something else went wrong, unrelated to the Tinify API.');
             // Something else went wrong, unrelated to the Tinify API.
         }
