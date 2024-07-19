@@ -18,11 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/tinify', function () {
-    return (new TinifyService())->test();
-});
-
-Route::get('token', [AuthController::class, 'getToken']);
+Route::post('token', [AuthController::class, 'getToken']);
 Route::get('positions', PositionController::class);
 
 Route::get('/users', [UserController::class, 'all']);
