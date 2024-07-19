@@ -26,7 +26,7 @@ class UserService
         $page = $request['page'] ?? 1;
         $limit = $page * 6;
 
-        return User::query()->with(['additionally', 'position'])->latest()->limit($limit)->get();
+        return User::query()->with(['additionally', 'position'])->orderByDesc('id')->limit($limit)->get();
     }
 
     public function view(int $id): Builder|array|Collection|Model
