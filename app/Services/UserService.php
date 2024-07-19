@@ -61,7 +61,7 @@ class UserService
         });
 
         if (!empty($user) && !empty($data['photo'])) {
-            $this->tinifyService->upload($data['photo']);
+            $this->tinifyService->upload($data['photo'], 0);
         }
     }
 }
