@@ -14,6 +14,7 @@ class UserSaveRequest extends FormRequest
             'phone' => ['required', 'phone:UA', 'unique:user_additionallies'],
             'password' => ['required', 'string', 'min:6', 'max:32', 'confirmed'],
             'position_id' => ['required', 'numeric', 'exists:user_positions,id'],
+            'photo' => ['required', 'image', 'max:5120', 'dimensions:min_width=70,min_height=70'],
         ];
     }
 }

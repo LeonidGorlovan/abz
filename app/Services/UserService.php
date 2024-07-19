@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
@@ -60,8 +59,10 @@ class UserService
             return User::query()->create($fillData);
         });
 
-        if (!empty($user) && !empty($data['photo'])) {
-            $this->tinifyService->upload($data['photo'], 0);
+        $userAdditionallyID = (int) data_get($user, 'additionally.id');
+
+        if ($userAdditionallyID > 0 && !empty($data['photo'])) {
+            $this->tinifyService->upload($data['photo'], $userAdditionallyID);
         }
     }
 }

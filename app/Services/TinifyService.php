@@ -25,8 +25,6 @@ class TinifyService
         $fileTmpPath = $image->getRealPath();
         $this->optimize($fileTmpPath, $fileName);
 
-//        $image->storeAs($this->path, $fileName);
-
         if (Storage::exists($this->path . '/' . $fileName)) {
             $userAdditionally = UserAdditionally::query()->find($id);
             Storage::delete($this->path . '/' . $userAdditionally->photo);
